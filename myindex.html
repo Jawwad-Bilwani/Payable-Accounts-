@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header"> <h1>Accounts Payable </h1></div>
+    <br>
+    <!-- <div class="main">
+        <div class="heading"> -->
+            <div id="heading" >
+                <h2 >Fill these column to record your accounts</h2>
+            </div><br>
+        <!-- <div id="addProductVender">
+            <div id="addVenderName" >
+                <label for=""><b>Add Venders Name</b></label>
+                <input  id="addVenderNameInput" type="text">
+                <button onclick="addVender();" id="addVenderButton">Submit</button>
+            </div>
+            <div id="addProductName" >
+                <label for=""><b>Add Product Name</b></label>
+                <input  id="addProductNameInput" type="text">
+                <button onclick="addProduct();" id="addProductButton">Submit</button>
+            </div>
+        </div>
+        </div>-->
+        <div id="form" > 
+            <form id="purchasingForm" action="">
+                <h1>Purchasing</h1>
+                <!-- <label for="">Date</label>
+                <input id="date" type="date"><br> -->
+                <label for="">VenderName</label>
+                <select name="Vender" id="purchasingVenderName">
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="ahmed" >ahmed</option>
+                    <option value="farhan">farhan</option>
+                    <option value="bilal" >bilal</option>
+                    <option value="kamran">kamran</option>
+                    
+                </select> 
+                <br>
+                <label for="">ProductName</label>
+                <select name="product" id="purchasingProductName">
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="oneStep" >oneStep</option>
+                    <option value="drumCutter">drumCutter</option>
+                    <option value="beater" >beater</option>
+                    <option value="kettle">kettle</option>
+                    
+                </select> 
+                <br>
+                <!-- <label for="">Type</label>
+                    <select name="debitCredit" id="debitCredit">
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="debit" >Debit</option>
+                    <option value="credit" >Credit</option>
+                </select> <br> -->
+                <label for="">Quantity</label>
+                <input id="productQty" type="number">
+                <br>
+                <label for="">Amount</label>
+                <input id="productAmount" type="number">
+                <br>
+                <button type="button" onclick="submitForm();">Submit</button>
+            </form>
+        </div>
+        <div>
+            <form id="paymentForm" action="">
+                <h1>Payment</h1>
+                <!-- <label for="">Date</label>
+                <input id="date" type="date"><br> -->
+                <label for="">VenderName</label>
+                <select name="Vender" id="venderName">
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="ahmed" >ahmed</option>
+                    <option value="farhan">farhan</option>
+                    <option value="bilal" >bilal</option>
+                    <option value="kamran">kamran</option>
+                    
+                </select> 
+                <br>
+                <!-- <label for="">Type</label>
+                    <select name="debitCredit" id="debitCredit">
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="debit" >Debit</option>
+                    <option value="credit" >Credit</option>
+                </select> <br> -->
+                <label for="">Amount</label>
+                <input id="paymentAmount" type="number">
+                <br>
+                <button type="button" onclick="submitPaymentForm();">Submit</button>
+            </form>
+        </div>
+        <div id="previewDiv">
+            <div id="totalPayPayable">
+                <h2 style=" margin-top: 0px;">Total Payable</h2> <h2 id="h2"></h2>
+                <table id="totalPayableTable">
+                    <thead>
+                        <th>Vender</th>
+                        <th>Particulars</th>
+                        <th>Quantity</th>
+                        <th>Amount</th>
+                        <th>Total Amount</th>
+                    </thead>
+                    <tbody id="payableTableBody">
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+        <script>
+            var purchasingProductName = document.getElementById('purchasingProductName')
+            var purchasingVenderName = document.getElementById('purchasingVenderName')
+            var productQty = document.getElementById('productQty')
+            var purchasingAmount = document.getElementById('productAmount') 
+            var tBody = document .getElementById ('payableTableBody')
+            var venderName = document.getElementById ('venderName')
+            var paymentAmount = document.getElementById ('paymentAmount')
+        function  submitForm(){
+            debugger;
+            var totalAmount = parseFloat (productQty.value) * parseFloat (purchasingAmount.value);
+            var trHtml = `<tr><td>`+purchasingVenderName.value+`</td>
+                          <td>`+purchasingProductName.value+`</td>
+                          <td>`+productQty.value+`</td>
+                          <td>`+purchasingAmount.value+`</td>
+                          <td>`+totalAmount+`</td></tr>`;
+            document.getElementById ('payableTableBody').innerHTML += trHtml;
+            totalPayable+=parseInt( totalAmount);
+            document.getElementById ("h2").innerHTML=`payable: `+ totalPayable;
+            document.getElementById ('purchasingForm').reset();                
+        }
+    function submitPaymentForm(){
+        var trHtml = `<tr><td >`+venderName.value+`</td>
+                        <td colspan="3">Paid Amount</td>
+                          <td>`+paymentAmount.value+`</td></tr>`;
+            document.getElementById ('payableTableBody').innerHTML += trHtml;                
+            totalPayable-=parseInt ( paymentAmount.value);
+            document.getElementById ("h2").innerHTML=`payable: `+ totalPayable;                
+            document.getElementById ('paymentForm').reset();
+    }
+    var totalPayable = 0
+
+
+        </script>
+    
+    
+</html>
+ 
+ 
+ 
