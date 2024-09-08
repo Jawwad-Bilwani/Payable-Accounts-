@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Accounts Payable</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,13 +13,13 @@
         <div id="addProductVender">
             <div id="addVenderName" >
                 <label for=""><b>Add Venders Name</b></label>
-                <input  id="addVenderNameInput" type="text">
-                <button onclick="addVender();" id="addVenderButton">Submit</button>
+                <input id="addVenderNameInput" type="text">
+                <button type="button" onclick="addVender();" id="addVenderButton">Submit</button>
             </div>
             <div id="addProductName" >
                 <label for=""><b>Add Product Name</b></label>
                 <input  id="addProductNameInput" type="text">
-                <button onclick="addProduct();" id="addProductButton">Submit</button>
+                <button type="button" onclick="addProduct();" id="addProductButton">Submit</button>
             </div>
         </div>
         
@@ -37,23 +37,11 @@
                 <label for="">Vender Name</label>
                 <select name="Vender" id="purchasingVenderName">
                     <option value="" disabled selected>Select an option</option>
-                    <option value="ahmed" >ahmed</option>
-                    <option value="farhan">farhan</option>
-                    <option value="bilal" >bilal</option>
-                    <option value="kamran">kamran</option>
-                    
                 </select> 
-                
                 <label for="">Product Name</label>
                 <select name="product" id="purchasingProductName">
                     <option value="" disabled selected>Select an option</option>
-                    <option value="oneStep" >One Step</option>
-                    <option value="drumCutter">Drum Cutter</option>
-                    <option value="beater" >Beater</option>
-                    <option value="kettle">Kettle</option>
-                    
                 </select> 
-                
                 <!-- <label for="">Type</label>
                     <select name="debitCredit" id="debitCredit">
                     <option value="" disabled selected>Select an option</option>
@@ -75,7 +63,7 @@
                 <label for="">Date</label>
                 <input id="paymentDate" type="date"><br>
                 <label for="">Vender Name</label>
-                <select name="Vender" id="venderName">
+                <select name="Vender" id="venderPayment">
                     <option value="" disabled selected>Select an option</option>
                     <option value="ahmed" >ahmed</option>
                     <option value="farhan">farhan</option>
@@ -128,7 +116,7 @@
             var paymentAmount = document.getElementById ('paymentAmount')
             var paymentDate = document.getElementById ('paymentDate')
             var purchasingDate = document.getElementById ('purchasingDate')
-        function  submitForm(){
+function  submitForm(){
             debugger;
             var totalAmount = parseFloat (productQty.value) * parseFloat (purchasingAmount.value);
             var trHtml = `<tr>
@@ -143,7 +131,7 @@
             document.getElementById ("h2").innerHTML=`payable: `+ totalPayable;
             document.getElementById ('purchasingForm').reset();                
         }
-    function submitPaymentForm(){
+function submitPaymentForm(){
         var trHtml = `<tr>
                         <td >`+paymentDate.value+`</td>
                         <td >`+venderName.value+`</td>
@@ -157,8 +145,23 @@
     }
     var totalPayable = 0
 
+function addProduct(){
+    debugger;
+    if (document.getElementById ('addProductNameInput').value == ''){alert('Please write product name');return false;}
+    var productName = document.getElementById ('addProductNameInput').value
+    document.getElementById('purchasingProductName').innerHTML += `<option>`+ productName +`</option>`
+    document.getElementById('addProductNameInput').value = '';
 
-        </script>
+}
+function addVender(){
+    debugger;
+    if (document.getElementById ('addVenderNameInput').value == ''){alert('Please write vender name');return false;}
+    var venderName = document.getElementById ('addVenderNameInput').value
+    document.getElementById('purchasingVenderName').innerHTML += `<option>`+ venderName +`</option>`
+    document.getElementById('venderPayment').innerHTML += `<option>`+ venderName +`</option>`
+    document.getElementById('addVenderNameInput').value = '';
+}
+</script>
     
     
 </html>
