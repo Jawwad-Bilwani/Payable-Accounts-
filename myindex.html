@@ -102,7 +102,8 @@
                         <th>Vender</th>
                         <th>Particulars</th>
                         <th>Quantity</th>
-                        <th>Amount</th>
+                        <th>Debit</th>
+                        <th>Credit</th>
                         <th>Total Amount</th>
                     </thead>
                     <tbody id="payableTableBody">
@@ -126,7 +127,7 @@
             var trHtml = `<tr><td>`+purchasingVenderName.value+`</td>
                           <td>`+purchasingProductName.value+`</td>
                           <td>`+productQty.value+`</td>
-                          <td>`+purchasingAmount.value+`</td>
+                          <td colspan="2">`+purchasingAmount.value+`</td>
                           <td>`+totalAmount+`</td></tr>`;
             document.getElementById ('payableTableBody').innerHTML += trHtml;
             totalPayable+=parseInt( totalAmount);
@@ -136,7 +137,8 @@
     function submitPaymentForm(){
         var trHtml = `<tr><td >`+venderName.value+`</td>
                         <td colspan="3">Paid Amount</td>
-                          <td>`+paymentAmount.value+`</td></tr>`;
+                          <td>`+paymentAmount.value+`</td>
+                          <td>-`+paymentAmount.value+`</td></tr>`;
             document.getElementById ('payableTableBody').innerHTML += trHtml;                
             totalPayable-=parseInt ( paymentAmount.value);
             document.getElementById ("h2").innerHTML=`payable: `+ totalPayable;                
