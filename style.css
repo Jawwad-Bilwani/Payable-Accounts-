@@ -1,4 +1,3 @@
-/* fromgpt */
 /* General Styles */
 body {
     font-family: Arial, sans-serif;
@@ -6,7 +5,6 @@ body {
     padding: 0;
     background-color: #f4f4f4;
 }
-
 .header {
     background-color: #333;
     color: white;
@@ -43,9 +41,26 @@ label {
     display: block;
     margin-bottom: 5px;
 }
+input[type="date"]
+ { width: 96.1%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
 
-input[type="text"], input[type="number"], input[type="date"], select {
-    width: 100%;
+input[type="text"], select {
+    width: 98%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+input[type="number"] {
+    width: 96.3%;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
@@ -97,9 +112,7 @@ th, td {
     }
 }
 
-/* The following sections are commented but will work correctly if uncommented */
 
-/*
 #addProductVender {
     display: flex;
     justify-content: space-between;
@@ -108,5 +121,3 @@ th, td {
 #addVenderName, #addProductName {
     width: 48%;
 }
-*/
-

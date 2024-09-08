@@ -9,12 +9,8 @@
 <body>
     <div class="header"> <h1>Accounts Payable </h1></div>
     <br>
-    <!-- <div class="main">
-        <div class="heading"> -->
-            <div id="heading" >
-                <h2 >Fill these column to record your accounts</h2>
-            </div><br>
-        <!-- <div id="addProductVender">
+    <div class="main">
+        <div id="addProductVender">
             <div id="addVenderName" >
                 <label for=""><b>Add Venders Name</b></label>
                 <input  id="addVenderNameInput" type="text">
@@ -26,12 +22,18 @@
                 <button onclick="addProduct();" id="addProductButton">Submit</button>
             </div>
         </div>
-        </div>-->
+        
+        <div class="heading">
+            
+            <div id="heading" >
+                <h2 >Fill these column to record your accounts</h2>
+            </div><br>
+        
         <div id="form" > 
             <form id="purchasingForm" action="">
                 <h1>Purchasing</h1>
-                <!-- <label for="">Date</label>
-                <input id="date" type="date"><br> -->
+                <label for="">Date</label>
+                <input id="purchasingDate" type="date"><br>
                 <label for="">Vender Name</label>
                 <select name="Vender" id="purchasingVenderName">
                     <option value="" disabled selected>Select an option</option>
@@ -41,7 +43,7 @@
                     <option value="kamran">kamran</option>
                     
                 </select> 
-                <br>
+                
                 <label for="">Product Name</label>
                 <select name="product" id="purchasingProductName">
                     <option value="" disabled selected>Select an option</option>
@@ -51,7 +53,7 @@
                     <option value="kettle">Kettle</option>
                     
                 </select> 
-                <br>
+                
                 <!-- <label for="">Type</label>
                     <select name="debitCredit" id="debitCredit">
                     <option value="" disabled selected>Select an option</option>
@@ -70,8 +72,8 @@
         <div>
             <form id="paymentForm" action="">
                 <h1>Payment</h1>
-                <!-- <label for="">Date</label>
-                <input id="date" type="date"><br> -->
+                <label for="">Date</label>
+                <input id="paymentDate" type="date"><br>
                 <label for="">Vender Name</label>
                 <select name="Vender" id="venderName">
                     <option value="" disabled selected>Select an option</option>
@@ -94,11 +96,13 @@
                 <button type="button" onclick="submitPaymentForm();">Submit</button>
             </form>
         </div>
+    </div>
         <div id="previewDiv">
             <div id="totalPayPayable">
                 <h2 style=" margin-top: 0px;">Total Payable</h2> <h2 id="h2"></h2>
                 <table id="totalPayableTable">
                     <thead>
+                        <th>Date</th>
                         <th>Vender</th>
                         <th>Particulars</th>
                         <th>Quantity</th>
@@ -112,6 +116,7 @@
                 </table>
             </div>
         </div>
+    
     </body>
         <script>
             var purchasingProductName = document.getElementById('purchasingProductName')
@@ -121,10 +126,14 @@
             var tBody = document .getElementById ('payableTableBody')
             var venderName = document.getElementById ('venderName')
             var paymentAmount = document.getElementById ('paymentAmount')
+            var paymentDate = document.getElementById ('paymentDate')
+            var purchasingDate = document.getElementById ('purchasingDate')
         function  submitForm(){
             debugger;
             var totalAmount = parseFloat (productQty.value) * parseFloat (purchasingAmount.value);
-            var trHtml = `<tr><td>`+purchasingVenderName.value+`</td>
+            var trHtml = `<tr>
+                        <td>`+purchasingDate.value+`</td>    
+                        <td>`+purchasingVenderName.value+`</td>
                           <td>`+purchasingProductName.value+`</td>
                           <td>`+productQty.value+`</td>
                           <td colspan="2">`+purchasingAmount.value+`</td>
@@ -135,7 +144,9 @@
             document.getElementById ('purchasingForm').reset();                
         }
     function submitPaymentForm(){
-        var trHtml = `<tr><td >`+venderName.value+`</td>
+        var trHtml = `<tr>
+                        <td >`+paymentDate.value+`</td>
+                        <td >`+venderName.value+`</td>
                         <td colspan="3">Paid Amount</td>
                           <td>`+paymentAmount.value+`</td>
                           <td>-`+paymentAmount.value+`</td></tr>`;
