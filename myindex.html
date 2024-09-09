@@ -65,10 +65,6 @@
                 <label for="">Vender Name</label>
                 <select name="Vender" id="venderPayment">
                     <option value="" disabled selected>Select an option</option>
-                    <option value="ahmed" >ahmed</option>
-                    <option value="farhan">farhan</option>
-                    <option value="bilal" >bilal</option>
-                    <option value="kamran">kamran</option>
                     
                 </select> 
                 <br>
@@ -85,27 +81,14 @@
             </form>
         </div>
     </div>
-        <div id="previewDiv">
-            <div id="venderTable">
-                <h1>vender</h1>
-                    <select id="`+venderName.value+`Table">
-                        <option value="" disabled selected>Select an option</option>
-                    </select>
-                    <table>
-                        <thead><tr>
-                            <th>Date</th>
-                            <th>Particulars</th>
-                            <th>Quantity</th>
-                            <th>Debit</th>
-                            <th>Credit</th>
-                            <th>Total Amount</th></tr>
-                        </thead>
-                        <tbody id="">
-                        </tbody>
-                        </table>
-            </div>
             <div id="totalPayPayable">
                 <h2 style=" margin-top: 0px;">Total Payable</h2> <h2 id="h2"></h2>
+                <h1>vender</h1>
+                    <select onchange="changeVender();" id="venderNameDropdown">
+                        <option value="allVender" selected>All</option>
+                    </select>
+                    <div id="specificVender"></div>
+                
                 <table id="totalPayableTable">
                     <thead>
                         <th>Date</th>
@@ -122,7 +105,6 @@
                 </table>
             </div>
             
-        </div>
         
             
         
@@ -140,8 +122,13 @@
             var purchasingDate = document.getElementById ('purchasingDate')
 function  submitForm(){
             debugger;
+            if (document.getElementById('purchasingVenderName').value == ''){alert('Please write vender name');return false;}
+            if (document.getElementById('purchasingProductName').value == ''){alert('Please write product name');return false;}
+            if (document.getElementById('productQty').value == ''){alert('Please write quantity ');return false;}
+            if (document.getElementById('purchasingDate').value == ''){alert('Please write date ');return false;}
+            if (document.getElementById('productAmount').value == ''){alert('Please write amount');return false;}
             var totalAmount = parseFloat (productQty.value) * parseFloat (purchasingAmount.value);
-            var trHtml = `<tr>
+            var trHtml = `<tr class ="allVender `+purchasingVenderName.value+`">
                         <td>`+purchasingDate.value+`</td>    
                         <td>`+purchasingVenderName.value+`</td>
                           <td>`+purchasingProductName.value+`</td>
@@ -151,12 +138,17 @@ function  submitForm(){
             document.getElementById ('payableTableBody').innerHTML += trHtml;
             totalPayable+=parseInt( totalAmount);
             document.getElementById ("h2").innerHTML=`payable: `+ totalPayable;
-            document.getElementById ('purchasingForm').reset();                
-        }
+            document.getElementById ('purchasingForm').reset();
+             }
 function submitPaymentForm(){
-        var trHtml = `<tr>
+    debugger;
+    if (document.getElementById('paymentDate').value == ''){alert('Please write date ');return false;}
+    if (document.getElementById('paymentAmount').value == ''){alert('Please write amount ');return false;}
+    if (document.getElementById('venderPayment').value == ''){alert('Please write vender name ');return false;}
+            
+        var trHtml = `<tr class ="allVender `+purchasingVenderName.value+`">
                         <td >`+paymentDate.value+`</td>
-                        <td >`+venderName.value+`</td>
+                        <td >`+venderPayment.value+`</td>
                         <td colspan="3">Paid Amount</td>
                           <td>`+paymentAmount.value+`</td>
                           <td>-`+paymentAmount.value+`</td></tr>`;
@@ -170,41 +162,38 @@ function submitPaymentForm(){
 function addProduct(){
     debugger;
     if (document.getElementById ('addProductNameInput').value == ''){alert('Please write product name');return false;}
-    if (document.getElementById ('addProductNameInput').value == productName){alert('Product already exist');return false;}
+    // if (document.getElementById ('addProductNameInput').value == productName){alert('Product already exist');return false;}
     var productName = document.getElementById ('addProductNameInput').value
     document.getElementById('purchasingProductName').innerHTML += `<option>`+ productName +`</option>`
     document.getElementById('addProductNameInput').value = '';
-    var productArray = [
-        {
-            
-        }
-    ]
 }
 function addVender(){
     debugger;
     if (document.getElementById ('addVenderNameInput').value == ''){alert('Please write vender name');return false;}
     var venderName = document.getElementById ('addVenderNameInput').value
     document.getElementById('purchasingVenderName').innerHTML += `<option>`+ venderName +`</option>`
-    document.getElementById('venderTable').innerHTML += `<option>`+ venderName +`</option>`
     document.getElementById('venderPayment').innerHTML += `<option>`+ venderName +`</option>`
+    document.getElementById('venderNameDropdown').innerHTML += `<option>`+ venderName +`</option>`
     document.getElementById('addVenderNameInput').value = '';
     
-    var venderHtml =`<div><h1>vender</h1>
-            <select id="`+venderName.value+`Table">
-                <option value="" disabled selected>Select an option</option>
-            </select>
-            <table>
-                <thead><tr>
-                    <th>Date</th>
-                    <th>Particulars</th>
-                    <th>Quantity</th>
-                    <th>Debit</th>
-                    <th>Credit</th>
-                    <th>Total Amount</th></tr>
-                </thead>
-                <tbody id="">
-                </tbody>
-                </table></div>`
+    
+}
+// by gpt
+function changeVender() {
+    debugger;
+    var currentVender = document.getElementById('venderNameDropdown').value;
+
+    // Hide all elements with the class 'allVender'
+    var allVenders = document.getElementsByClassName('allVender');
+    for (let i = 0; i < allVenders.length; i++) {
+        allVenders[i].hidden = true;
+    }
+
+    // Show elements with the class matching the selected vendor
+    var selectedVenders = document.getElementsByClassName(currentVender);
+    for (let i = 0; i < selectedVenders.length; i++) {
+        selectedVenders[i].hidden = false;
+    }
 }
 
 </script>
