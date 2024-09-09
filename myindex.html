@@ -86,6 +86,24 @@
         </div>
     </div>
         <div id="previewDiv">
+            <div id="venderTable">
+                <h1>vender</h1>
+                    <select id="`+venderName.value+`Table">
+                        <option value="" disabled selected>Select an option</option>
+                    </select>
+                    <table>
+                        <thead><tr>
+                            <th>Date</th>
+                            <th>Particulars</th>
+                            <th>Quantity</th>
+                            <th>Debit</th>
+                            <th>Credit</th>
+                            <th>Total Amount</th></tr>
+                        </thead>
+                        <tbody id="">
+                        </tbody>
+                        </table>
+            </div>
             <div id="totalPayPayable">
                 <h2 style=" margin-top: 0px;">Total Payable</h2> <h2 id="h2"></h2>
                 <table id="totalPayableTable">
@@ -103,7 +121,11 @@
                     </tbody>
                 </table>
             </div>
+            
         </div>
+        
+            
+        
     
     </body>
         <script>
@@ -148,19 +170,43 @@ function submitPaymentForm(){
 function addProduct(){
     debugger;
     if (document.getElementById ('addProductNameInput').value == ''){alert('Please write product name');return false;}
+    if (document.getElementById ('addProductNameInput').value == productName){alert('Product already exist');return false;}
     var productName = document.getElementById ('addProductNameInput').value
     document.getElementById('purchasingProductName').innerHTML += `<option>`+ productName +`</option>`
     document.getElementById('addProductNameInput').value = '';
-
+    var productArray = [
+        {
+            
+        }
+    ]
 }
 function addVender(){
     debugger;
     if (document.getElementById ('addVenderNameInput').value == ''){alert('Please write vender name');return false;}
     var venderName = document.getElementById ('addVenderNameInput').value
     document.getElementById('purchasingVenderName').innerHTML += `<option>`+ venderName +`</option>`
+    document.getElementById('venderTable').innerHTML += `<option>`+ venderName +`</option>`
     document.getElementById('venderPayment').innerHTML += `<option>`+ venderName +`</option>`
     document.getElementById('addVenderNameInput').value = '';
+    
+    var venderHtml =`<div><h1>vender</h1>
+            <select id="`+venderName.value+`Table">
+                <option value="" disabled selected>Select an option</option>
+            </select>
+            <table>
+                <thead><tr>
+                    <th>Date</th>
+                    <th>Particulars</th>
+                    <th>Quantity</th>
+                    <th>Debit</th>
+                    <th>Credit</th>
+                    <th>Total Amount</th></tr>
+                </thead>
+                <tbody id="">
+                </tbody>
+                </table></div>`
 }
+
 </script>
     
     
