@@ -101,17 +101,6 @@ th, td {
     text-align: left;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    input[type="text"], input[type="number"], input[type="date"], select, button {
-        width: 100%;
-    }
-
-    #form, div {
-        margin: 10px;
-    }
-}
-
 
 #addProductVender {
     display: flex;
